@@ -21,11 +21,11 @@ class MinimalisticBottomBar extends StatefulWidget {
   final Color backgroundColor;
 
   MinimalisticBottomBar({
-    this.height = 120.0,
+    this.height = 110.0,
     @required this.items,
     this.animationDuration = const Duration(milliseconds: 200),
     @required this.selectedIndex,
-    @required this.onIndexChanged,
+    this.onIndexChanged,
     this.backgroundColor = Colors.white,
   }) : assert(items.length >= 2 && items.length <= 5);
 
@@ -33,8 +33,8 @@ class MinimalisticBottomBar extends StatefulWidget {
   _MinimalisticBottomBarState createState() => _MinimalisticBottomBarState();
 }
 
-class _MinimalisticBottomBarState extends State<MinimalisticBottomBar> with TickerProviderStateMixin {
-  
+class _MinimalisticBottomBarState extends State<MinimalisticBottomBar>
+    with TickerProviderStateMixin {
   // Hosts all the controllers controlling the boxes.
   List<AnimationController> _controllers = [];
 
@@ -45,21 +45,31 @@ class _MinimalisticBottomBarState extends State<MinimalisticBottomBar> with Tick
   void initState() {
     super.initState();
     // Initialise all animation controllers
-    for (int i = 0; i < widget.items.length; i++){
+    for (int i = 0; i < widget.items.length; i++) {
       _controllers.add(
-        AnimationController(
-          vsync: this,
-          duration: widget.animationDuration
-        )
-      );
-    } 
+          AnimationController(vsync: this, duration: widget.animationDuration));
+    }
     // Start animation for initially selected controller.
-    _controllers[widget.selectedIndex].forward();
+    // _controllers[widget.selectedIndex].forward();
   }
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return null;
+    return Container(
+      height: widget.height,
+      color: widget.backgroundColor,
+      child: Center(
+        child: Stack(
+          children: <Widget>[
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: widget.items.map((item) {
+                  int index = widget.items.indexOf(item);
+                  return Text(item.text);
+                }).toList()),
+          ],
+        ),
+      ),
+    );
   }
 }

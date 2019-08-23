@@ -1,3 +1,5 @@
+import 'package:example/minimalistic_bottom_navigation/src/minimalistic_bottom_bar.dart';
+import 'package:example/minimalistic_bottom_navigation/src/minimalistic_bottom_bar_item.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -49,23 +51,10 @@ class _MyHomePageState extends State<MyHomePage> {
           samplePage(Colors.greenAccent),
           samplePage(Colors.redAccent),
           samplePage(Colors.blueAccent),
+          samplePage(Colors.yellow),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        elevation: 5,
-        fixedColor: Colors.black,
-        onTap: (index) {
-          bottomNavigationTapped(index);
-        },
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.headset), title: Text('Music')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person), title: Text('Profile')),
-        ],
-      ),
+      bottomNavigationBar: bottomNavMinimalistic(),
     );
   }
 
@@ -74,6 +63,55 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Container(
         color: background,
       ),
+    );
+  }
+
+  Widget bottomNavStandard() {
+    return BottomNavigationBar(
+      currentIndex: currentIndex,
+      elevation: 5,
+      fixedColor: Colors.black,
+      onTap: (index) {
+        bottomNavigationTapped(index);
+      },
+      items: <BottomNavigationBarItem>[
+        BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.headset), title: Text('Music')),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.person), title: Text('Profile')),
+      ],
+    );
+  }
+
+  Widget bottomNavMinimalistic() {
+    return MinimalisticBottomBar(
+      currentIndex: currentIndex,
+      onIndexChanged: (index) {
+        bottomNavigationTapped(index);
+      },
+      items: <MinimalisticBottomBarItem>[
+        MinimalisticBottomBarItem(
+          text: 'Home',
+          icon: Icons.home,
+          color: Colors.greenAccent
+        ),
+        MinimalisticBottomBarItem(
+          text: 'Music',
+          icon: Icons.headset,
+          color: Colors.redAccent
+        ),
+        MinimalisticBottomBarItem(
+          text: 'Profile',
+          icon: Icons.person,
+          color: Colors.blueAccent
+        ),
+        MinimalisticBottomBarItem(
+          text: 'Discover',
+          icon: Icons.person,
+          color: Colors.blueAccent
+        ),
+      ],
     );
   }
 }
