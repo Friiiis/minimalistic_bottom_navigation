@@ -1,14 +1,20 @@
 # minimalistic_bottom_navigation
 
-Minimalistic bottom navigation for flutter projects.
+Minimalistic bottom navigation bar for Flutter projects. Based on my [Dribbble design](https://dribbble.com/shots/6958560-Minimalistic-Bottom-Navigation).
 
-## Getting Started
+## Demo
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+Indsæt gif
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+## Properties
+
+...
+
+## Getting started
+
+...
+
+## Contributors
+
+Gustav Friis-Hansen
+Stefan Petrovic
