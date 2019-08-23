@@ -59,11 +59,11 @@ class _MyHomePageState extends State<MyHomePage> {
           bottomNavigationTapped(index);
         },
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Spil')),
+          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
           BottomNavigationBarItem(
-              icon: Icon(Icons.headset), title: Text('Regler')),
+              icon: Icon(Icons.headset), title: Text('Music')),
           BottomNavigationBarItem(
-              icon: Icon(Icons.person), title: Text('Info')),
+              icon: Icon(Icons.person), title: Text('Profile')),
         ],
       ),
     );
