@@ -1,4 +1,4 @@
-import 'package:flutter_test/flutter_test.dart';
+/*import 'package:flutter_test/flutter_test.dart';
 
 import 'package:minimalistic_bottom_navigation/minimalistic_bottom_navigation.dart';
 
@@ -10,4 +10,4 @@ void main() {
     expect(calculator.addOne(0), 1);
     expect(() => calculator.addOne(null), throwsNoSuchMethodError);
   });
-}
+}*/
