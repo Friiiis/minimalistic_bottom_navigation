@@ -63,6 +63,8 @@ class _MinimalisticBottomBarState extends State<MinimalisticBottomBar>
       child: Center(
         child: Stack(
           children: <Widget>[
+            // I stedet for Positioned, skal vi bruge SlideTransition til at animere bevægelsen.
+            // For at animere ikonet så det ændrer sig, skal vi bruge AnimatedCrossFade 
             Positioned(
               top: 10,
               left: screenWidth / widget.items.length * widget.currentIndex,
