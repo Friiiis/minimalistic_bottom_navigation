@@ -35,10 +35,26 @@ class MinimalisticBottomBar extends StatefulWidget {
 
 class _MinimalisticBottomBarState extends State<MinimalisticBottomBar> with TickerProviderStateMixin {
   
+  // Hosts all the controllers controlling the boxes.
+  List<AnimationController> _controllers = [];
+
+  // Current index chosen
+  int index = 0;
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    // Initialise all animation controllers
+    for (int i = 0; i < widget.items.length; i++){
+      _controllers.add(
+        AnimationController(
+          vsync: this,
+          duration: widget.animationDuration
+        )
+      );
+    } 
+    // Start animation for initially selected controller.
+    _controllers[widget.selectedIndex].forward();
   }
 
   @override
