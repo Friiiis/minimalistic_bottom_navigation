@@ -63,9 +63,11 @@ class _MinimalisticBottomBarState extends State<MinimalisticBottomBar>
       child: Center(
         child: Stack(
           children: <Widget>[
-            // I stedet for Positioned, skal vi bruge SlideTransition til at animere bevægelsen.
+            // I stedet for Positioned, skal vi bruge AnimatedPositioned til at animere bevægelsen.
             // For at animere ikonet så det ændrer sig, skal vi bruge AnimatedCrossFade 
-            Positioned(
+            AnimatedPositioned(
+              duration: Duration(milliseconds: 500),
+              curve: Curves.fastOutSlowIn,
               top: 10,
               left: screenWidth / widget.items.length * widget.currentIndex,
               child: Container(
@@ -73,7 +75,7 @@ class _MinimalisticBottomBarState extends State<MinimalisticBottomBar>
                 // color: Colors.purpleAccent,
                 child: Icon(
                   Icons.home,
-                  color: Colors.greenAccent,
+                  color: widget.items[widget.currentIndex].color.withOpacity(.5),
                   size: widget.height * 0.75,
                 ),
               ),

@@ -109,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
         MinimalisticBottomBarItem(
           text: 'Discover',
           icon: Icons.person,
-          color: Colors.blueAccent
+          color: Colors.yellow
         ),
       ],
     );
