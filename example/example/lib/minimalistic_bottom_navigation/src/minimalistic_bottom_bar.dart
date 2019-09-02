@@ -8,13 +8,16 @@ class MinimalisticBottomBar extends StatefulWidget {
   // The background color of the BottomNavigationBar
   final Color backgroundColor;
 
+  // Color of the text
   final Color fontColor;
+
+  // The opacity of the color of the icons.
+  final double iconOpacity;
+
+  final double elevation;
 
   // Items in the BottomNavigationBar
   final List<MinimalisticBottomBarItem> items;
-
-  // Duration of the selection animation
-  final Duration animationDuration;
 
   // The selected index of the bar
   final int currentIndex;
@@ -26,11 +29,15 @@ class MinimalisticBottomBar extends StatefulWidget {
     this.height = 80.0,
     this.backgroundColor = Colors.white,
     this.fontColor = Colors.black54,
+    this.iconOpacity = 1,
+    this.elevation = 2,
     @required this.items,
-    this.animationDuration = const Duration(milliseconds: 200),
     @required this.currentIndex,
     @required this.onIndexChanged,
-  }) : assert(items.length >= 2 && items.length <= 5);
+  }) : assert(items.length >= 2 &&
+            items.length <= 5 &&
+            iconOpacity >= 0 &&
+            iconOpacity <= 1);
 
   @override
   _MinimalisticBottomBarState createState() => _MinimalisticBottomBarState();
@@ -38,45 +45,79 @@ class MinimalisticBottomBar extends StatefulWidget {
 
 class _MinimalisticBottomBarState extends State<MinimalisticBottomBar>
     with TickerProviderStateMixin {
-  // Hosts all the controllers controlling the boxes.
-  AnimationController _controller;
+  bool showingFirstIcon = true;
 
-  // Current index chosen
-  int index = 0;
+  Icon firstIcon;
+  Icon secondIcon;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: widget.animationDuration);
-    // Start animation for initially selected controller.
-    // _controllers[widget.selectedIndex].forward();
-    index = widget.currentIndex;
+    firstIcon = Icon(
+      Icons.home,
+      color: widget.items[widget.currentIndex].color.withOpacity(widget.iconOpacity),
+      size: widget.height * 0.65,
+    );
+    secondIcon = Icon(
+      Icons.home,
+      color: widget.items[widget.currentIndex].color.withOpacity(widget.iconOpacity),
+      size: widget.height * 0.65,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
 
+    if (showingFirstIcon) {
+      secondIcon = Icon(
+        widget.items[widget.currentIndex].icon,
+        color: widget.items[widget.currentIndex].color.withOpacity(widget.iconOpacity),
+        size: widget.height * 0.6,
+      );
+      showingFirstIcon = false;
+    } else {
+      firstIcon = Icon(
+        widget.items[widget.currentIndex].icon,
+        color: widget.items[widget.currentIndex].color.withOpacity(widget.iconOpacity),
+        size: widget.height * 0.6,
+      );
+      showingFirstIcon = true;
+    }
+
     return Container(
       height: widget.height,
-      color: widget.backgroundColor,
+      decoration: BoxDecoration(
+        color: widget.backgroundColor,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black26,
+            blurRadius: widget.elevation,
+            offset: Offset(0, 0),
+            spreadRadius: widget.elevation,
+          ),
+        ],
+      ),
       child: Center(
         child: Stack(
           children: <Widget>[
-            // I stedet for Positioned, skal vi bruge AnimatedPositioned til at animere bevægelsen.
-            // For at animere ikonet så det ændrer sig, skal vi bruge AnimatedCrossFade 
             AnimatedPositioned(
               duration: Duration(milliseconds: 500),
               curve: Curves.fastOutSlowIn,
-              top: 10,
+              top: widget.height * 0.2,
               left: screenWidth / widget.items.length * widget.currentIndex,
               child: Container(
                 width: screenWidth / widget.items.length,
                 // color: Colors.purpleAccent,
-                child: Icon(
-                  Icons.home,
-                  color: widget.items[widget.currentIndex].color.withOpacity(.5),
-                  size: widget.height * 0.75,
+                child: Center(
+                  child: AnimatedCrossFade(
+                    duration: Duration(milliseconds: 250),
+                    firstChild: firstIcon,
+                    secondChild: secondIcon,
+                    crossFadeState: showingFirstIcon
+                        ? CrossFadeState.showFirst
+                        : CrossFadeState.showSecond,
+                  ),
                 ),
               ),
             ),
@@ -96,6 +137,9 @@ class _MinimalisticBottomBarState extends State<MinimalisticBottomBar>
                           style: TextStyle(
                             color: widget.fontColor,
                             fontSize: 16,
+                            fontWeight: widget.currentIndex == index
+                                ? FontWeight.bold
+                                : FontWeight.normal,
                           ),
                         ),
                       ),

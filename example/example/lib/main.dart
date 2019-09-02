@@ -25,34 +25,37 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  PageController _pageController;
+  // PageController _pageController;
   int currentIndex = 0;
+  List<Color> colors = List<Color>();
 
   @override
   void initState() {
-    _pageController = PageController(initialPage: 0);
+    // _pageController = PageController(initialPage: 0);
     super.initState();
+    colors.add(Colors.green);
+    colors.add(Colors.redAccent);
+    colors.add(Colors.purpleAccent);
+    colors.add(Colors.blueAccent);
+    colors.add(Colors.orangeAccent);
   }
 
   void bottomNavigationTapped(int index) {
     setState(() {
       currentIndex = index;
-      _pageController.jumpToPage(index);
+      // _pageController.jumpToPage(index);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
-        controller: _pageController,
-        physics: NeverScrollableScrollPhysics(),
-        children: <Widget>[
-          samplePage(Colors.greenAccent),
-          samplePage(Colors.redAccent),
-          samplePage(Colors.blueAccent),
-          samplePage(Colors.yellow),
-        ],
+      body: Center(
+        child: AnimatedContainer(
+          duration: Duration(milliseconds: 500),
+          curve: Curves.ease,
+          color: colors[currentIndex],
+        ),
       ),
       bottomNavigationBar: bottomNavMinimalistic(),
     );
@@ -60,7 +63,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget samplePage(Color background) {
     return Center(
-      child: Container(
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 500),
+        curve: Curves.ease,
         color: background,
       ),
     );
@@ -86,6 +91,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget bottomNavMinimalistic() {
     return MinimalisticBottomBar(
+      iconOpacity: 0.2,
+      elevation: 5,
       currentIndex: currentIndex,
       onIndexChanged: (index) {
         bottomNavigationTapped(index);
@@ -94,22 +101,27 @@ class _MyHomePageState extends State<MyHomePage> {
         MinimalisticBottomBarItem(
           text: 'Home',
           icon: Icons.home,
-          color: Colors.greenAccent
+          color: colors[0],
         ),
         MinimalisticBottomBarItem(
           text: 'Music',
           icon: Icons.headset,
-          color: Colors.redAccent
+          color: colors[1],
+        ),
+        MinimalisticBottomBarItem(
+          text: 'Discover',
+          icon: Icons.search,
+          color: colors[2],
         ),
         MinimalisticBottomBarItem(
           text: 'Profile',
           icon: Icons.person,
-          color: Colors.blueAccent
+          color: colors[3],
         ),
         MinimalisticBottomBarItem(
-          text: 'Discover',
-          icon: Icons.person,
-          color: Colors.yellow
+          text: 'Settings',
+          icon: Icons.settings,
+          color: colors[4],
         ),
       ],
     );
