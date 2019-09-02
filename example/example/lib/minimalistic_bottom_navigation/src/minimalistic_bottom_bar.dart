@@ -26,7 +26,7 @@ class MinimalisticBottomBar extends StatefulWidget {
   final ValueChanged<int> onIndexChanged;
 
   MinimalisticBottomBar({
-    this.height = 80.0,
+    this.height = 75,
     this.backgroundColor = Colors.white,
     this.fontColor = Colors.black54,
     this.iconOpacity = 1,
@@ -134,6 +134,7 @@ class _MinimalisticBottomBarState extends State<MinimalisticBottomBar>
                       child: Center(
                         child: Text(
                           item.text,
+                          textAlign: TextAlign.center,
                           style: TextStyle(
                             color: widget.fontColor,
                             fontSize: 16,
