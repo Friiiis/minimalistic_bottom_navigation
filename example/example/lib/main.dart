@@ -35,8 +35,6 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     colors.add(Colors.green);
     colors.add(Colors.redAccent);
-    colors.add(Colors.purpleAccent);
-    colors.add(Colors.blueAccent);
     colors.add(Colors.orangeAccent);
   }
 
@@ -109,19 +107,9 @@ class _MyHomePageState extends State<MyHomePage> {
           color: colors[1],
         ),
         MinimalisticBottomBarItem(
-          text: 'Discover',
-          icon: Icons.search,
-          color: colors[2],
-        ),
-        MinimalisticBottomBarItem(
-          text: 'Profile',
-          icon: Icons.person,
-          color: colors[3],
-        ),
-        MinimalisticBottomBarItem(
           text: 'Settings',
           icon: Icons.settings,
-          color: colors[4],
+          color: colors[2],
         ),
       ],
     );

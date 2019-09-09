@@ -2,33 +2,36 @@ import 'package:flutter/material.dart';
 import 'minimalistic_bottom_bar_item.dart';
 
 class MinimalisticBottomBar extends StatefulWidget {
-  // Height of the navigation bar item
+  /// Height of the navigation bar item
   final double height;
 
-  // The background color of the BottomNavigationBar
+  /// The background color of the BottomNavigationBar
   final Color backgroundColor;
 
-  // Color of the text
+  /// Color of the text
   final Color fontColor;
 
-  // The opacity of the color of the icons.
+  /// The opacity of the color of the icons.
   final double iconOpacity;
 
+  /// The elevation of the navigation bar
   final double elevation;
 
-  // Items in the BottomNavigationBar
+  /// Items in the navigation bar
   final List<MinimalisticBottomBarItem> items;
 
-  // The selected index of the bar
+  /// The selected index of the bar
   final int currentIndex;
 
-  // Callback when an item is selected
+  /// Callback when an item is selected
   final ValueChanged<int> onIndexChanged;
+
+  static const fontHex = Color(0xff4a4a4a);
 
   MinimalisticBottomBar({
     this.height = 75,
     this.backgroundColor = Colors.white,
-    this.fontColor = Colors.black54,
+    this.fontColor = fontHex,
     this.iconOpacity = 1,
     this.elevation = 2,
     @required this.items,
@@ -55,12 +58,14 @@ class _MinimalisticBottomBarState extends State<MinimalisticBottomBar>
     super.initState();
     firstIcon = Icon(
       Icons.home,
-      color: widget.items[widget.currentIndex].color.withOpacity(widget.iconOpacity),
+      color: widget.items[widget.currentIndex].color
+          .withOpacity(widget.iconOpacity),
       size: widget.height * 0.65,
     );
     secondIcon = Icon(
       Icons.home,
-      color: widget.items[widget.currentIndex].color.withOpacity(widget.iconOpacity),
+      color: widget.items[widget.currentIndex].color
+          .withOpacity(widget.iconOpacity),
       size: widget.height * 0.65,
     );
   }
@@ -72,14 +77,16 @@ class _MinimalisticBottomBarState extends State<MinimalisticBottomBar>
     if (showingFirstIcon) {
       secondIcon = Icon(
         widget.items[widget.currentIndex].icon,
-        color: widget.items[widget.currentIndex].color.withOpacity(widget.iconOpacity),
+        color: widget.items[widget.currentIndex].color
+            .withOpacity(widget.iconOpacity),
         size: widget.height * 0.6,
       );
       showingFirstIcon = false;
     } else {
       firstIcon = Icon(
         widget.items[widget.currentIndex].icon,
-        color: widget.items[widget.currentIndex].color.withOpacity(widget.iconOpacity),
+        color: widget.items[widget.currentIndex].color
+            .withOpacity(widget.iconOpacity),
         size: widget.height * 0.6,
       );
       showingFirstIcon = true;
@@ -104,11 +111,10 @@ class _MinimalisticBottomBarState extends State<MinimalisticBottomBar>
             AnimatedPositioned(
               duration: Duration(milliseconds: 500),
               curve: Curves.fastOutSlowIn,
-              top: widget.height * 0.2,
               left: screenWidth / widget.items.length * widget.currentIndex,
               child: Container(
                 width: screenWidth / widget.items.length,
-                // color: Colors.purpleAccent,
+                height: widget.height,
                 child: Center(
                   child: AnimatedCrossFade(
                     duration: Duration(milliseconds: 250),
@@ -122,31 +128,32 @@ class _MinimalisticBottomBarState extends State<MinimalisticBottomBar>
               ),
             ),
             Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: widget.items.map((item) {
-                  int index = widget.items.indexOf(item);
-                  return InkWell(
-                    onTap: () {
-                      widget.onIndexChanged(index);
-                    },
-                    child: Container(
-                      width: screenWidth / widget.items.length,
-                      child: Center(
-                        child: Text(
-                          item.text,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: widget.fontColor,
-                            fontSize: 16,
-                            fontWeight: widget.currentIndex == index
-                                ? FontWeight.bold
-                                : FontWeight.normal,
-                          ),
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: widget.items.map((item) {
+                int index = widget.items.indexOf(item);
+                return InkWell(
+                  onTap: () {
+                    widget.onIndexChanged(index);
+                  },
+                  child: Container(
+                    width: screenWidth / widget.items.length,
+                    child: Center(
+                      child: Text(
+                        item.text,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: widget.fontColor,
+                          fontSize: 16,
+                          fontWeight: widget.currentIndex == index
+                              ? FontWeight.bold
+                              : FontWeight.normal,
                         ),
                       ),
                     ),
-                  );
-                }).toList()),
+                  ),
+                );
+              }).toList(),
+            ),
           ],
         ),
       ),
