@@ -4,12 +4,10 @@ Minimalistic bottom navigation bar for Flutter projects. Based on my [Dribbble d
 
 I created this design because I find the standard bottom navigation too boring. There is a lot of cool designs available to use, but most of them relies on icons instead of text. An icon without explanatory text can be confusing to some users, which is why I tried to come up with a design that combines beauty and user experience.
 
-**Style guide**
-
 For the best result when using the Minimalistic Bottom Navigation, please use the following style guide:
 
 - The text of the items should be roughly the same length. This is necessary because each item has the same amount of horizontal space on the screen. Fewer items can take bigger differences in length.
-- Icons should be solid and have an opacity below 0.5. This makes the icon visible but not taking too much attention.
+- Icons should be solid and have a similar color to the background. This makes the icon visible but not taking too much attention. The opacity property can be used to unite the icon color with the background.
 
 ## Demo
 
@@ -105,4 +103,5 @@ View the Flutter app in the `example` directory to see a working example of how 
 ## Contributors
 
 Gustav Friis-Hansen: https://github.com/Friiiis
+
 Stefan Petrovic: https://github.com/StefPetro

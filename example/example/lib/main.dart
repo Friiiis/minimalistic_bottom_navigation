@@ -1,5 +1,5 @@
-import 'package:example/minimalistic_bottom_navigation/minimalistic_bottom_navigation.dart';
 import 'package:flutter/material.dart';
+import 'package:minimalistic_bottom_navigation/minimalistic_bottom_navigation.dart';
 
 void main() => runApp(MyApp());
 
@@ -26,9 +26,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    colors.add(Color(0xffbaffbf));
-    colors.add(Color(0xffffc7c7));
-    colors.add(Color(0xffc7dfff));
+    colors.add(Colors.green);
+    colors.add(Colors.redAccent);
+    colors.add(Colors.blueAccent);
   }
 
   void bottomNavigationTapped(int index) {
@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       bottomNavigationBar: MinimalisticBottomBar(
-        iconOpacity: 0.5,
+        iconOpacity: 0.2,
         elevation: 0,
         currentIndex: currentIndex,
         onIndexChanged: (index) {
