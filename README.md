@@ -13,7 +13,7 @@ For the best result when using the Minimalistic Bottom Navigation, please use th
 
 ## Demo
 
-![Demo](https://github.com/Friiiis/slide_to_confirm/blob/master/example.gif "Demo Gif")
+![Demo](https://github.com/Friiiis/minimalistic_bottom_navigation/blob/master/example.gif "Demo Gif")
 
 ## Installation
 
