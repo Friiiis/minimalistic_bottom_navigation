@@ -2,7 +2,7 @@ name: minimalistic_bottom_navigation
 description: Minimalistic bottom navigation for flutter projects.
 version: 0.0.1
 author: Gustav Friis-Hansen <friisdeveloper@gmail.com> Stefan Petrovic
-homepage:
+homepage: https://github.com/Friiiis/minimalistic_bottom_navigation
 
 environment:
   sdk: ">=2.1.0 <3.0.0"

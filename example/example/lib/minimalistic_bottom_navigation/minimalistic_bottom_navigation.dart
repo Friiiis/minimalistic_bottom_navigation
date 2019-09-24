@@ -1,4 +1,4 @@
-// library minimalistic_bottom_navigation_example;
+library minimalistic_bottom_navigation;
 
-// export 'package:minimalistic_bottom_navigation_example/src/minimalistic_bottom_bar.dart';
-// export 'package:minimalistic_bottom_navigation_example/src/minimalistic_bottom_bar_item.dart';
+export 'package:example/minimalistic_bottom_navigation/src/minimalistic_bottom_bar.dart';
+export 'package:example/minimalistic_bottom_navigation/src/minimalistic_bottom_bar_item.dart';

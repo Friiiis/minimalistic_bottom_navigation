@@ -2,37 +2,37 @@ import 'package:flutter/material.dart';
 import 'minimalistic_bottom_bar_item.dart';
 
 class MinimalisticBottomBar extends StatefulWidget {
-  /// Height of the navigation bar item
+  /// Height of the navigation bar. Defaults to 80.
   final double height;
 
-  /// The background color of the BottomNavigationBar
+  /// The background color of the navigation bar. Defaults to Colors.white.
   final Color backgroundColor;
 
-  /// Color of the text
+  /// Color of the font. Defaults to Color(0xff4a4a4a).
   final Color fontColor;
 
-  /// The opacity of the color of the icons.
+  /// The opacity of the color of the icons, should be between 0 and 1. Defaults to 0.5.
   final double iconOpacity;
 
-  /// The elevation of the navigation bar
+  /// The elevation of the navigation bar. Defaults to 2.
   final double elevation;
 
-  /// Items in the navigation bar
+  /// Items in the navigation bar. Must be between 2 and 5 (both inclusive).
   final List<MinimalisticBottomBarItem> items;
 
-  /// The selected index of the bar
+  /// The current index of the navigation bar.
   final int currentIndex;
 
-  /// Callback when an item is selected
+  /// Callback when an item is selected.
   final ValueChanged<int> onIndexChanged;
 
   static const fontHex = Color(0xff4a4a4a);
 
   MinimalisticBottomBar({
-    this.height = 75,
+    this.height = 80,
     this.backgroundColor = Colors.white,
     this.fontColor = fontHex,
-    this.iconOpacity = 1,
+    this.iconOpacity = 0.5,
     this.elevation = 2,
     @required this.items,
     @required this.currentIndex,
@@ -57,13 +57,13 @@ class _MinimalisticBottomBarState extends State<MinimalisticBottomBar>
   void initState() {
     super.initState();
     firstIcon = Icon(
-      Icons.home,
+      widget.items[widget.currentIndex].icon,
       color: widget.items[widget.currentIndex].color
           .withOpacity(widget.iconOpacity),
       size: widget.height * 0.65,
     );
     secondIcon = Icon(
-      Icons.home,
+      widget.items[widget.currentIndex].icon,
       color: widget.items[widget.currentIndex].color
           .withOpacity(widget.iconOpacity),
       size: widget.height * 0.65,
